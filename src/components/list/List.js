@@ -1,15 +1,15 @@
 import Item from "../item/Item";
-function List() {
-    const arr = ['item 1', 'item 2'];
-   const items = arr.map((item, index) =>{
-    return <Item key={'no'+ index} title={arr[item]} />
-   });
+function List({arr}) {
+  const items = arr.map((item, index) => {
+    return <Item key={"no" + index} title={item} />;
+  });
+  console.log(items);
   return (
-    <div>
- 
-{items}
+    
 
-    </div>
+    <div>{items}
+    
+     </div> 
   );
 }
 
