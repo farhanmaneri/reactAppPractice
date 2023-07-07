@@ -1,25 +1,40 @@
 import { useState } from "react";
-import List from "./components/list/List";
-import './App.css'
-import AddItem from './components/additem/Additem'
+import "./App.css";
+import AuthContext from "./context/AuthContext";
+import AuthHandler from "./components/authHandler/AuthHandler";
 function App() {
-  const bool = true;
-  
-  const [items, setItems] = useState(["item 1", "item 2"]);
+  const [isAuthenticated, setisAuthenticated] = useState(false);
+  const onLogin = () => {
+    setisAuthenticated(true);
+  };
+  //   const bool = true;
 
-  const onAddHandler = (data) => {
-    // setItems([...items, data])
-    setItems((prevState)=>{
-      return [...prevState, data];
-    })
-console.log(data)
-  }
+  //   const [items, setItems] = useState(["item 1", "item 2"]);
+
+  //   const onAddHandler = (data) => {
+  //     // setItems([...items, data])
+  //     setItems((prevState)=>{
+  //       return [...prevState, data];
+  //     })
+  // console.log(data)
+  //   }
 
   return (
-    <div className={bool ? 'App' : " "}>
-    <AddItem onAdd={onAddHandler}/>
-    <List arr={items}/>
-    </div>
+    // <div className={bool ? 'App' : " "}>
+    // <AddItem onAdd={onAddHandler}/>
+    // <List arr={items}/>
+    // </div>
+    <>
+      <div className="App">
+        <AuthContext.Provider
+          value={{
+            isLogedIn: isAuthenticated,
+          }}
+        >
+          <AuthHandler onLogin={onLogin} />
+        </AuthContext.Provider>
+      </div>
+    </>
   );
 }
 
